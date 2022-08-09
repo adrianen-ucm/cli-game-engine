@@ -1,0 +1,42 @@
+name: 'The game example'
+intro:
+  name: 'The game example introduction'
+  steps:
+    - { type: speak, character: 🙋‍♂️, text: 'Hi! This is the game introduction, which consists of several steps' }
+    - { type: speak, character: 🙎‍♂️, text: 'For example, this is a step in which a character says something' }
+    - { type: storyteller, text: 'This is a step in which a storyteller says something' }
+    - { type: speak, character: 🙎‍♂️, text: 'And the following one is a choice step, where the player must select an option to continue' }
+    - {
+        type: choice,
+        choices: [
+          { correct: true, text: 'This is a correct choice that allows the player directly to proceed' },
+          { correct: true, text: 'This is also a correct choice, but it has substeps', steps: [
+            { type: storyteller, text: 'This is a substep' }
+          ] },
+          { correct: false, text: 'This is wrong, so the choice step will be presented again', steps: [
+            { type: storyteller, text: 'This is a substep, but you must choose again' }
+          ] }
+        ]
+      }
+    - { type: speak, character: 🙎‍♂️, text: 'Once the introduction has finished, the game allows to select an available stage' }
+stages:
+  0:
+    name: '🏠 The house'
+    sections:
+      0:
+        steps:
+          - { type: storyteller, text: 'Come back once you had visited the castle' }
+      1:
+        requires:
+          1: 0
+        steps:
+          - { type: storyteller, text: 'Did you enjoyed the castle?' }
+
+  1:
+    name: '🏰 The castle'
+    sections:
+      0:
+        requires:
+          0: 0
+        steps:
+          - { type: storyteller, text: 'No princess here, this is just a tutorial' }

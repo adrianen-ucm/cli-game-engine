@@ -1,0 +1,55 @@
+cabal-version:      2.4
+
+name:               cli-game-engine
+version:            1.0.0.0
+description:        A simple CLI game engine that interprets games written in 
+                    a YAML specific format.
+
+license:            NONE
+author:             Adrián Enríquez Ballester
+maintainer:         adrianen@ucm.es
+
+extra-source-files: README.md
+
+executable play
+    main-is:          Main.hs
+    hs-source-dirs:   app
+    ghc-options:      -Wall -O2 -threaded -rtsopts
+    other-extensions: DataKinds
+                    , TypeApplications
+    default-language: Haskell2010
+    build-depends:    base ^>=4.14.3.0
+                    , cli-game-engine
+
+library
+    exposed-modules:  I18n.Applicative
+                    , I18n.Literals
+                    , Model.Game
+                    , Model.Progress
+                    , Model.Stage 
+                    , Model.Step 
+                    , Model.Warn
+                    , Platform.GameStation
+                    , Platform.Process
+                    , UI.IO
+                    , UI.IOConfig
+                    , UI.UI 
+    hs-source-dirs:   src
+    ghc-options:      -Wall -O2
+    default-language: Haskell2010
+    other-extensions: AllowAmbiguousTypes
+                    , ConstraintKinds
+                    , DataKinds
+                    , FlexibleContexts
+                    , GeneralizedNewtypeDeriving
+                    , KindSignatures
+                    , OverloadedStrings
+                    , Rank2Types
+                    , ScopedTypeVariables
+                    , TypeApplications
+                    , TypeFamilies
+    build-depends:    base ^>=4.14.3.0
+                    , containers
+                    , mtl 
+                    , yaml
+                    , aeson
